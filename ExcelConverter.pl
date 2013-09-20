@@ -162,7 +162,7 @@ elsif ($choice == 4) 												# unicode (UCS-2 Little-Endian) (tab-delimited)
 		chop($line);												# removes the CR because it is the last char of the string
 		$line =~ s/(?!"")"//g; 										# a substitution of nil for characters that satisfy this match will remove all stand alone double-quotes and reduce sequences of 3 to 2, and sequences of 2 to 1.
 		$line =~ s/""/"/g; 											# a follow up substitution regex will replace all remaining sequences of 2 double-quotes with 1
-		chop($line);												# another chop is required to prep the string for writing to the file because the multiple substitutions add a CR to the end of the string
+		$line =~ s/$[\r]//;											# removes any end-of-line CR added in the substitution process from previous matches 
 		$line = $line . "\n";										# add the complete record seperator
 		print $cleanbatchfile $line;								# write the cleaned line of metadata to the new file
 	}
