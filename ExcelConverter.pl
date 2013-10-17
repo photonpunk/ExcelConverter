@@ -24,6 +24,8 @@
 # Unicode option now re-encodes the exported UCS-2 16bit little endian into standard UTF-8 without BOM
 # Excel filename is now captured for use in nameing processed files for final export. this is implemented in the unicode export option as the default filename (06/10/2013)
 
+#MUST create a folder named OUTPUT in the top level of the C drive before running script
+
 
 #! usr/local/bin/perl
 use Tkx;
@@ -56,7 +58,6 @@ my $bd;
 my $be;
 my $bf;
 
-my $new_url = '../ExcelConverter/'; # default url to save new file to
 my $batch_filename = ''; # var handle for holding the name of the properly formed (hopefully) excel batch file for use when saving the cleaned and converted finished file
 
 my $choice = 4; # default filetype (unicode)
@@ -99,7 +100,7 @@ my $workbook = $Excel->Workbooks->Open($excel_file);
 
 if ($choice == 1) # tab-delimited
 {
-	my $saveas_file = '../OUTPUT/tab_temp.txt';
+	my $saveas_file = 'C:\OUTPUT\tab_temp.txt';
 
 	$workbook->SaveAs($saveas_file, -4158);				# see XlFileFormat Enumeration for more info
 	sleep(4);
@@ -113,7 +114,7 @@ if ($choice == 1) # tab-delimited
 
 elsif ($choice == 2) # csv
 {
-	my $saveas_file = '../OUTPUT/csv_temp.txt';
+	my $saveas_file = 'C:\OUTPUT\csv_temp.txt';
 
 	$workbook->SaveAs($saveas_file, 6);					# see XlFileFormat Enumeration for more info
 	sleep(4);
@@ -127,7 +128,7 @@ elsif ($choice == 2) # csv
 
 elsif ($choice == 3) # xml
 {
-	my $saveas_file = '../OUTPUT/xml_temp.xml';
+	my $saveas_file = 'C:\OUTPUT\xml_temp.xml';
 
 	$workbook->SaveAs($saveas_file, 46);				# see XlFileFormat Enumeration for more info
 	sleep(4);
@@ -142,7 +143,7 @@ elsif ($choice == 3) # xml
 
 elsif ($choice == 4) 												# unicode (UCS-2 Little-Endian) (tab-delimited)
 {
-	my $saveas_file = '../OUTPUT/uni_temp.txt';
+	my $saveas_file = 'C:\OUTPUT\uni_temp.txt';
 
 	$workbook->SaveAs($saveas_file, 42);							# see XlFileFormat Enumeration for more info
 	sleep(4);														# pause for file saving
