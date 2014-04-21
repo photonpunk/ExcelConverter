@@ -75,12 +75,10 @@ $bc->configure( -state => 'active');
 
 sub runFileConverter {
 
-if (substr($new_url, 2, 0) == '/') # determines if user selected address uses forward or backward slashes
-{
+if (substr($new_url, 2, 0) == '/'){ # determines if user selected address uses forward or backward slashes
 	$s = '/';
 }
-else
-{
+else {
 	$s = '\\';
 }
 
@@ -98,8 +96,8 @@ my $excel_file = $url;
 my $workbook = $Excel->Workbooks->Open($excel_file);
 
 
-if ($choice == 1) # tab-delimited
-{
+if ($choice == 1) { # tab-delimited
+
 	my $saveas_file = 'C:\OUTPUT\tab_temp.txt';
 
 	$workbook->SaveAs($saveas_file, -4158);				# see XlFileFormat Enumeration for more info
@@ -112,8 +110,8 @@ if ($choice == 1) # tab-delimited
 	copy($old_file,$new_file) or die "Copy failed: $!";	# renames (moves) files
 }
 
-elsif ($choice == 2) # csv
-{
+elsif ($choice == 2){ # csv
+
 	my $saveas_file = 'C:\OUTPUT\csv_temp.txt';
 
 	$workbook->SaveAs($saveas_file, 6);					# see XlFileFormat Enumeration for more info
@@ -126,8 +124,8 @@ elsif ($choice == 2) # csv
 	copy($old_file,$new_file) or die "Copy failed: $!";	# renames (moves) files
 }
 
-elsif ($choice == 3) # xml
-{
+elsif ($choice == 3){ # xml
+
 	my $saveas_file = 'C:\OUTPUT\xml_temp.xml';
 
 	$workbook->SaveAs($saveas_file, 46);				# see XlFileFormat Enumeration for more info
@@ -141,8 +139,8 @@ elsif ($choice == 3) # xml
 
 }
 
-elsif ($choice == 4) 												# unicode (UCS-2 Little-Endian) (tab-delimited)
-{
+elsif ($choice == 4){												# unicode (UCS-2 Little-Endian) (tab-delimited)
+
 	my $saveas_file = 'C:\OUTPUT\uni_temp.txt';
 
 	$workbook->SaveAs($saveas_file, 42);							# see XlFileFormat Enumeration for more info
